@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather-App</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="card p-3  text-light">
+            <h2 class="text-center">Weather App</h2>
+            <div class="d-flex mt-3 search">
+                <input type="text" id="city" placeholder="Enter the city" class="form-control">
+                <button id="btn1" class="rounded-circle ms-2 p-2" onclick="getWeather()">
+                    <img src="search.png" alt="Search" style="width: 24px; height: 24px;">
+                </button>
+            </div>
+            <div class="weather text-center mt-3">
+                <img src="weather.png" class="weather-icon img-fluid" alt="Weather Icon">
+                <h1 class="temp fs-1">22°c</h1>
+                <h2 class="city">City Name</h2>
+            </div>
+            <div class="row details mt-4">
+                <div class="col-6 text-center">
+                    <img src="humidity.png" alt="Humidity Icon" style="width: 48px; height: 48px;">
+                    <div>
+                        <p class="humidity fs-2">50%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col-6 text-center">
+                    <img src="wind.png" alt="Wind Speed Icon" style="width: 48px; height: 48px;">
+                    <div>
+                        <p class="wind fs-2">15 km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        const apiKey = 'b40d3deab29ecb0e564347172f2d4b0c';
+
+        function getWeather() {
+            const city = document.getElementById('city').value.trim();
+            if (!city) {
+                alert("Please enter the city.");
+                return;
+            }
+
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
+            
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('City not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    document.querySelector('.temp').textContent = `${data.main.temp}°c`;
+                    document.querySelector('.city').textContent = data.name;
+                    document.querySelector('.humidity').textContent = `${data.main.humidity}%`;
+                    document.querySelector('.wind').textContent = `${data.wind.speed} km/h`;
+                    document.querySelector('.weather-icon').src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                })
+                .catch(error => {
+                    alert('An error occurred: ' + error.message);
+                });
+        }
+    </script>
+</body>
+</html>

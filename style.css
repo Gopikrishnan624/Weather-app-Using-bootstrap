@@ -1,0 +1,51 @@
+body {
+    background:url(Rain\ wallpaper\ 4k\ for\ mobile.jpg);
+    background-size: contain;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+button {
+    /* border-radius: 50% !important; */
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: transparent;
+    border: 1px solid #a2f1fc80;
+    transition: 0.5s ease;
+    user-select: none;
+    align-self:center;
+  }
+  
+  #btn1:hover,
+  :focus {
+    color: #ffffff;
+    background: #008cff;
+    border: 1px solid #008cff;
+    text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+    box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+      0 0 100px #008cff;
+  }
+  
+  .card{
+    background: linear-gradient(rgba(0,0,0,.0),rgba(0,0,0,.0));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+  }
+
+  .card input{
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    border-radius: 30px;
+    flex: 1;
+    font-size: 18px;
+  }
